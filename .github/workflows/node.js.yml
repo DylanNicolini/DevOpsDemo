@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./unit-tests-tutorial
+        working-directory: ./server/
     strategy:
       matrix:
         node-version: [16.x]
