@@ -1,5 +1,6 @@
 {
   "name": "unit-tests-tutorial",
+  "homepage": "https://dylannicolini.githubpages.io/devopsdemo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
