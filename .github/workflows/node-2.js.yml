@@ -24,14 +24,12 @@ jobs:
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       with:
-        projectBaseDir: unit-tests-tutorial/
         args: >
           -Dsonar.organization=DylanNicolini_DevOpsDemo
           -Dsonar.projectKey=DylanNicolini_DevOpsDemo
           -Dsonar.python.coverage.reportPaths=coverage.xml
           -Dsonar.sources=./src
           -Dexclusions=**/test/**/*.ts
-          -Dsonar.tests=tests/
           -Dsonar.language=js
           -Dsonar.tests=tests/
       env:
