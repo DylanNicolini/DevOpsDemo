@@ -20,7 +20,7 @@ steps:
     configMode: 'manual'
     cliProjectKey: 'DylanNicolini_DevOpsDemo' #this will come from setup
     cliProjectName: '[PROJECT_NAME]' #this will come from setup
-    cliSources: 'src' #e.g.'components,lib,pages,utils'    
+    cliSources: 'unit-tests-tutorial\src' #e.g.'components,lib,pages,utils'    
     extraProperties: |
         sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/*.stories.tsx,**/coverage/**,Scripts/**,**/*.scss,**/__snapshots__/**,**/*[Tt]ests.cs,**/node_modules/**,**/ClientApp/build/**,**/ClientApp/.storybook/**,**/obj/**,**/__mocks__/**,**/ClientApp/src/serviceWorker.ts
         sonar.typescript.lcov.reportPaths=ClientApp/coverage/lcov.info
