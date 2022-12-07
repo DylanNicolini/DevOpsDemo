@@ -26,7 +26,8 @@ steps:
   inputs:
     SonarCloud: 'Sonar_Cloud_DevOpsDemo'
     organization: 'flyawaya'
-    scannerMode: 'MSBuild'
+    scannerMode: 'CLI'
+    configMode: 'manual'
     projectKey: 'DylanNicolini_DevOpsDemo'
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
