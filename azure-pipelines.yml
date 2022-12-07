@@ -1,0 +1,44 @@
+# Node.js
+
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar_Cloud_DevOpsDemo'
+    organization: 'flyawaya'
+    projectKey: 'DylanNicolini_DevOpsDemo'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'DylanNicolini_DevOpsDemo' #this will come from setup
+    cliProjectName: '[PROJECT_NAME]' #this will come from setup
+    cliSources: '$(build.sourcesdirectory)/unit-tests-tutorial/src' #e.g.'components,lib,pages,utils'    
+    extraProperties: |
+        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/*.stories.tsx,**/coverage/**,Scripts/**,**/*.scss,**/__snapshots__/**,**/*[Tt]ests.cs,**/node_modules/**,**/ClientApp/build/**,**/ClientApp/.storybook/**,**/obj/**,**/__mocks__/**,**/ClientApp/src/serviceWorker.ts
+        sonar.typescript.lcov.reportPaths=ClientApp/coverage/lcov.info
+        sonar.cs.opencover.reportsPaths=**/opencover.xml
+        
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  workingDirectory: '$(build.sourcesdirectory)/unit-tests-tutorial'
+  displayName: 'npm install and build'
+
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
