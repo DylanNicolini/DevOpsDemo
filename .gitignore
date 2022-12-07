@@ -105,3 +105,9 @@ dist
 
 #VS Code Folder
 .vscode/
+
+#bin folder
+bin
+
+# obj VS Code Folder
+obj
