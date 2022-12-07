@@ -35,7 +35,7 @@ steps:
     npm install
     npm run build
   workingDirectory: '$(build.sourcesdirectory)/unit-tests-tutorial'
-  displayName: 'npm install and build'
+  displayName: 'npm install and build and test:ci'
 
 
 - task: SonarCloudAnalyze@1
