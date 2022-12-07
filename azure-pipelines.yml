@@ -11,6 +11,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar_Cloud_DevOpsDemo'
+    organization: 'flyawaya'
+    projectKey: 'DylanNicolini_DevOpsDemo'
+    extraProperties: |
+        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/*.stories.tsx,**/coverage/**,Scripts/**,**/*.scss,**/__snapshots__/**,**/*[Tt]ests.cs,**/node_modules/**,**/ClientApp/build/**,**/ClientApp/.storybook/**,**/obj/**,**/__mocks__/**,**/ClientApp/src/serviceWorker.ts
+        sonar.typescript.lcov.reportPaths=ClientApp/coverage/lcov.info
+        sonar.cs.opencover.reportsPaths=**/opencover.xml
+        
 - task: NodeTool@0
   inputs:
     versionSpec: '16.x'
@@ -22,13 +32,7 @@ steps:
   workingDirectory: '$(build.sourcesdirectory)/unit-tests-tutorial'
   displayName: 'npm install and build'
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'Sonar_Cloud_DevOpsDemo'
-    organization: 'flyawaya'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    projectKey: 'DylanNicolini_DevOpsDemo'
+
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
