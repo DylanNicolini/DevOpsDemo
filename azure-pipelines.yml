@@ -23,9 +23,8 @@ steps:
     cliSources: '$(build.sourcesdirectory)/unit-tests-tutorial/src' #e.g.'components,lib,pages,utils'    
     extraProperties: |
         sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/*.stories.tsx,**/coverage/**,Scripts/**,**/*.scss,**/__snapshots__/**,**/*[Tt]ests.cs,**/node_modules/**,**/ClientApp/build/**,**/ClientApp/.storybook/**,**/obj/**,**/__mocks__/**,**/ClientApp/src/serviceWorker.ts
-        sonar.typescript.lcov.reportPaths=ClientApp/coverage/lcov.info
+        sonar.typescript.lcov.reportPaths=**/coverage/lcov.info
         sonar.cs.opencover.reportsPaths=**/opencover.xml
-        sonar.testExecutionReportPaths=test-report.xml
         
 - task: NodeTool@0
   inputs:
@@ -36,7 +35,7 @@ steps:
     npm install
     npm run build
   workingDirectory: '$(build.sourcesdirectory)/unit-tests-tutorial'
-  displayName: 'npm install and build'
+  displayName: 'npm install and build and test:ci'
 
 
 - task: SonarCloudAnalyze@1
